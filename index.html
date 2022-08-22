@@ -106,8 +106,6 @@ with in-depth search results <b>without</b> needing any kind of prior knowledge,
    <label>Query (one term, please):</label>
   <input type="text" class="searchq" value="snacks"><br><br>
 
-<label>Now that your Datamuse request is set up, do you want to add a couple more words to tilt the search? Put them here, separated by comma (optional)</label>
-  <input type="text" class="extras" value="healthy, recipes, breakfast"><br><br>
 
 
 
@@ -193,12 +191,12 @@ function smush(){
     searchq = encodeURI(searchq)
     var freq = document.querySelector(".freq").value
     freq = Number(freq)
-    var extras = document.querySelector(".extras").value
-    extraA = extras.split(",")
-    console.log(extraA)
-    var extrastring = extraA.toString(); 
-extrastring = extrastring.replace(/,/g," ")
-console.log(extrastring)
+ //   var extras = document.querySelector(".extras").value
+ //   extraA = extras.split(",")
+ //   console.log(extraA)
+ //   var extrastring = extraA.toString(); 
+//extrastring = extrastring.replace(/,/g," ")
+//console.log(extrastring)
 
     var thickno = 4
  
@@ -326,13 +324,13 @@ loopstart++
 
 var pushquery = "\""+searchq+"\""
 formedcorn.push(pushquery)
-var cornstring = formedcorn.toString();
+// var cornstring = formedcorn.toString();
 
-cornstring = encodeURI(cornstring)
+// cornstring = encodeURI(cornstring)
 
 
 
-var search_string = "("+formedcorn[0]+" | "+formedcorn[3]+")"+" "+"("+formedcorn[2]+" | "+formedcorn[1]+")"+" "+pushquery+" "+extrastring
+var search_string = "("+formedcorn[0]+" | "+formedcorn[3]+")"+" "+"("+formedcorn[2]+" | "+formedcorn[1]+")"+" "+pushquery
 search_string = encodeURI(search_string)
 
 var search_url = "https://www.google.com/search?q="+search_string

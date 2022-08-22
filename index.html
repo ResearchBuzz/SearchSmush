@@ -276,7 +276,7 @@ while(loopstart < 4){
 if(corncount.indexOf(ranum)!==-1){
   console.log("Already here")
   breakstop++
-  if (breakstop = 5) {
+  if (breakstop = 10) {
 loopstart++
 breakstop = 0
 }
@@ -298,7 +298,7 @@ window.alert("Datamuse couldn't find any words to add to your query term. Try an
 // Now let's loop through our random numbers and get our random words
 
 loopstart = 0
-wordloop = corncount.length-1
+wordloop = corncount.length
 
 while(loopstart < wordloop) {
 var ranum = corncount[loopstart]

@@ -106,11 +106,16 @@ with in-depth search results <b>without</b> needing any kind of prior knowledge,
    <label>Query (one term, please):</label>
   <input type="text" class="searchq" value="snacks"><br><br>
 
+<label>Now that your Datamuse request is set up, do you want to add a couple more words to tilt the search? Put them here, separated by comma (optional)</label>
+  <input type="text" class="extras" value="healthy, recipes, breakfast"><br><br>
+
+
+
 <label>What is the maximum frequency you want in your additional query words?</label><br>
 <i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find.</i>
   <input type="number" class="freq" min="1" max="5" value="3"><br><br>
 
-<button onclick="smush()">Smush</button><br><br>
+<button onclick="smush()">Smush Up A Search Query</button><br><br>
 
 
 
@@ -188,9 +193,18 @@ function smush(){
     searchq = encodeURI(searchq)
     var freq = document.querySelector(".freq").value
     freq = Number(freq)
-    var thickno = 3
+    var extras = document.querySelector(".extras").value
+    extraA = extras.split(",")
+    console.log(extraA)
+    var extrastring = extraA.toString(); 
+extrastring = extrastring.replace(/,/g," ")
+console.log(extrastring)
+
+    var thickno = 4
  
-    var api_url = "https://api.datamuse.com/words?rel_jjb="+searchq+"&md=f&max=100"
+    var api_url = "https://api.datamuse.com/words?rel_jjb="+searchq+"&md=f&max=100&topics="
+
+
 
     // Empty arrays for processing API data and looping
     let mapdata = {}
@@ -237,6 +251,7 @@ loopstart++
 
 }
 
+
 // Now let's do a loop to make five random numbers. Reset the loopcounter.
    
 loopstart = 0
@@ -245,7 +260,7 @@ loopstart = 0
 var cornarray = cornstarch.length
 // This is what happens when you start counting at 0
 cornarray = cornarray-1
-var makeset = 3
+var makeset = 4
 if (makeset > cornarray){
 makeset = cornarray
 }
@@ -253,18 +268,34 @@ makeset = cornarray
 
 // Making an array of random numbers and checking for duplicates
 
-while(loopstart < makeset){
+breakstop = 0
+
+while(loopstart < 4){
  var min = Math.ceil(0);
   var max = Math.floor(cornarray);
   var ranum = Math.floor(Math.random() * (max - min + 1) + min); 
   console.log("Random Number is",ranum)
 if(corncount.indexOf(ranum)!==-1){
   console.log("Already here")
+  breakstop++
+  if (breakstop = 5) {
+loopstart++
+breakstop = 0
+}
 }
 else{ 
 corncount.push(ranum)
 loopstart++
-}}
+}
+}
+
+
+if (corncount.length < 2){
+
+window.alert("Datamuse couldn't find any words to add to your query term. Try another one. You can also try to set the word frequency higher (4 or 5). That will make more words available.")
+}
+
+
 
 // Now let's loop through our random numbers and get our random words
 
@@ -274,7 +305,6 @@ wordloop = corncount.length
 while(loopstart < wordloop) {
 var ranum = corncount[loopstart]
 var raword = cornstarch[ranum]
-console.log("Random Word is",raword)
 randomcorn.push(raword)
 loopstart++
 }
@@ -284,28 +314,29 @@ loopstart++
 
 loopstart = 0
 
-while (loopstart < wordloop) {
+while (loopstart < 4) {
 var formword = randomcorn[loopstart].word
 formword = "\""+formword+"\""
-console.log(formword)
 formedcorn.push(formword)
 loopstart++
 }
 
-console.log(formedcorn)
 
 // Now let's turn this array of words into a Google search URL 
 
 var pushquery = "\""+searchq+"\""
 formedcorn.push(pushquery)
 var cornstring = formedcorn.toString();
-console.log(cornstring)
-cornstring = cornstring.replace(/,/g," ")
-console.log(cornstring)
+
 cornstring = encodeURI(cornstring)
 
-var search_url = "https://www.google.com/search?q="+cornstring
-console.log(search_url)
+
+
+var search_string = "("+formedcorn[0]+" | "+formedcorn[3]+")"+" "+"("+formedcorn[2]+" | "+formedcorn[1]+")"+" "+pushquery+" "+extrastring
+search_string = encodeURI(search_string)
+
+var search_url = "https://www.google.com/search?q="+search_string
+
 window.open(search_url, '_blank')
 
 

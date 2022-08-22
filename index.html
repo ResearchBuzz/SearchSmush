@@ -1,0 +1,330 @@
+ <!DOCTYPE html>
+<!-- Template by html.am -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>ResearchBuzz Search Gizmos: Smushy Search</title>
+		<style type="text/css">
+			html, #page { padding:0; margin:0;}
+			body { margin:0; padding:0; width:100%; color:#959595; font:normal 12px/2.0em Sans-Serif;} 
+			h1, h2, h3, h4, h5, h6 {color:darkblue;}
+			#page { background:#fff;}
+			#header, #footer, #top-nav, #content, #content #contentbar, #content #sidebar { margin:0; padding:0;}
+						
+			/* Logo */
+			#logo { padding:0; width:auto; float:left;}
+			#logo h1 a, h1 a:hover { color:darkblue; text-decoration:none;}
+			#logo h1 span { color:#24592c;}
+
+			/* Header */
+			#header { background:#fff; }
+			#header-inner { margin:0 auto; padding:0; width:970px;}
+			
+			/* Feature */
+			.feature { background:blue;padding:18px;}
+			.feature-inner { margin:auto;width:970px; }
+			.feature-inner h1 {color:#E9E9FC;font-size:32px;}
+			
+			/* Menu */
+			#top-nav { margin:0 auto; padding:0px 0 0; height:37px; float:right;}
+			#top-nav ul { list-style:none; padding:0; height:37px; float:left;}
+			#top-nav ul li { margin:0; padding:0 0 0 8px; float:left;}
+			#top-nav ul li a { display:block; margin:0; padding:8px 20px; color:blue; text-decoration:none;}
+			#top-nav ul li.active a, #top-nav ul li a:hover { color:#d3d3f9;}
+			
+			/* Content */
+			#content-inner { margin:0 auto; padding:10px 0; width:970px;background:#fff;}
+			#content #contentbar { margin:0; padding:0; float:right; width:760px;}
+			#content #contentbar .article {  font-size: 1.25em; color: black; margin:0 0 24px; padding:0 20px 0 15px; }
+			#content #sidebar { background-color:#ECFFDC; padding:0; float:left; width:200px;}
+			#content #sidebar .widget { margin:0 0 12px; padding:8px 8px 8px 13px;line-height:1.4em;}
+			#content #sidebar .widget h3 a { text-decoration:none;}
+			#content #sidebar .widget ul { margin:0; padding:0; list-style:none; color:#959595;}
+			#content #sidebar .widget ul li { margin:0;}
+			#content #sidebar .widget ul li { padding:4px 0; width:185px;}
+			#content #sidebar .widget ul li a {font-size: 1.25em; color:black; text-decoration:none; margin-left:-16px; padding:4px 8px 4px 16px;}
+			#content #sidebar .widget ul li a:hover { color:#d3d3f9; font-weight:bold; text-decoration:none;}
+			
+			/* Footerblurb */
+			#footerblurb { background:#d3d3f9;color:blue;}
+			#footerblurb-inner { margin:0 auto; width:922px; padding:24px;}
+			#footerblurb .column { margin:0; text-align:justify; float:left;width:250px;padding:0 24px;}
+			
+			/* Footer */
+			#footer { background:#fff;}
+			#footer-inner { margin:auto; text-align:center; padding:12px; width:922px;}
+			#footer a {color:blue;text-decoration:none;}
+			
+			/* Clear both sides to assist with div alignment  */
+			.clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+		</style>
+		
+
+	</head>
+	<body>
+		<div id="page">
+			<header id="header">
+				<div id="header-inner">	
+					<div id="logo">
+						<h1><a href="#">ResearchBuzz<span>Search Gizmos</span></a></h1>
+					</div>
+					<div id="top-nav">
+						<ul>
+						<li><a href="https://github.com/ResearchBuzz">ResearchBuzz GitHub Home</a></li>
+						<li><a href="https://www.researchbuzz.me">ResearchBuzz Main Site</a></li>
+						<li><a href="https://www.rbfirehose.com">ResearchBuzz Firehose</a></li>
+						</ul>
+					</div>
+					<div class="clr"></div>
+				</div>
+			</header>
+			<div class="feature">
+				<div class="feature-inner">
+				<h1>Smushy Search </h1>
+				</div>
+			</div>
+		
+	
+			<div id="content">
+				<div id="content-inner">
+				
+					<main id="contentbar">
+						<div class="article">
+	
+
+
+
+<h3>
+  General topic searching on Google is a pain, especially if you don't know much about the topic you're trying to explore. When you're knowledge is minimal it's 
+  hard to refine your topic to get past the very general "front door" results that Google tends to provide for a topic search. Enter SearchSmush.</h3>
+  
+<h4> SearchSmush takes your topical search term and uses the Datamuse API to find related words (a frequency setting allows you to specify how common the words should be). 
+Three of the found words are then picked at random, added to your query term, built into a Google query, and opened in a new tab. The idea is to let you explore that topic 
+with in-depth search results <b>without</b> needing any kind of prior knowledge, and <b>without</b> the time needed to build a specialized vocabulary. </h4>
+ 
+  
+   <label>Query (one term, please):</label>
+  <input type="text" class="searchq" value="snacks"><br><br>
+
+<label>What is the maximum frequency you want in your additional query words?</label><br>
+<i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find.</i>
+  <input type="number" class="freq" min="1" max="5" value="3"><br><br>
+
+<button onclick="smush()">Smush</button><br><br>
+
+
+
+					</main>
+					
+					<nav id="sidebar">
+						<div class="widget">
+							<h3>ResearchBuzz Search Gizmos</h3>
+							<ul>
+							<li><a href="https://researchbuzz.github.io/politician-parade-Twitter/">Politician Parade: Twitter</a></li>
+							<li><a href="https://researchbuzz.github.io/politician-parade/">Politician Parade: Google News</a></li>
+							<li><a href="https://researchbuzz.github.io/Time-Sliced-News-Search/">Time-Sliced News Search</a></li>
+							<li><a href="https://researchbuzz.github.io/Kebberfegg/">Kebberfegg RSS Feed Generator</a></li>
+							<li><a href="https://researchbuzz.github.io/blogspace-time-machine/">Blogspace Time Machine</a></li>
+<li><a href="https://researchbuzz.github.io/Blog-Shovel/">Blog Shovel</a></li>
+<li><a href="https://researchbuzz.github.io/sinker-search/">Sinker Search</a></li>
+<li><a href="https://researchbuzz.github.io/The-Anti-Bullseye-Name-Search/">The Anti-Bullseye Name Search</a></li>
+<li><a href="https://researchbuzz.github.io/Back-That-Ask-Up-/">Back That Ask Up</a></li>
+<li><a href="https://researchbuzz.github.io/Twitter-Receipts/">Twitter Receipts</a></li>
+								<li><a href="https://researchbuzz.github.io/Pams-Pin/">Pam's Pin</a></li>
+								<li><a href="https://researchbuzz.github.io/Senator-Social-Slices-Twitter/">Senator Social Slices (Twitter)</a></li>
+							<li><a href="https://researchbuzz.github.io/No-Shop-Sherlock/">No Shop Sherlock</a></li>
+								<li><a href="https://researchbuzz.github.io/Congressional-Social-Media-Explorer/">Congressional Social Media Explorer</a></li>
+							
+							</ul>
+						</div>
+					</nav>
+					
+					<div class="clr"></div>
+				</div>
+			</div>
+		
+			<div id="footerblurb">
+				<div id="footerblurb-inner">
+				
+					<div class="column">
+						<h2><span>What Is This?</span></h2>
+						<p>The RB Gizmos are a collection of search tools made with JavaScript and HTML.</p>
+					</div>	
+					<div class="column">
+						<h2><span>Why Is This?</span></h2>
+						<p>Because I've been writing about searching and search engines since 1996 and I'm obsessed with them.</p>
+					</div>
+					<div class="column">
+						<h2> </h2>
+						<p><script> </script></p>
+					</div>	
+					
+					<div class="clr"></div>
+				</div>
+			</div>
+			<footer id="footer">
+				<div id="footer-inner">
+					
+					<div class="clr"></div>
+				</div>
+			</footer>
+
+
+
+		</div>
+
+
+
+
+   <script>
+
+function smush(){
+
+
+
+    // Getting values from form 
+
+    var searchq = document.querySelector(".searchq").value
+    searchq = encodeURI(searchq)
+    var freq = document.querySelector(".freq").value
+    freq = Number(freq)
+    var thickno = 3
+ 
+    var api_url = "https://api.datamuse.com/words?rel_jjb="+searchq+"&md=f&max=100"
+
+    // Empty arrays for processing API data and looping
+    let mapdata = {}
+    let fscore =[]
+    let cornstarch=[]
+    let randomcorn =[]
+    let corncount =[]
+    let formedcorn = []
+ 
+// Getting the Pile of Related Words to Start With 
+
+fetch(api_url, {
+  mode: 'cors',
+ })
+   .then(function(response){
+        return response.json()
+   })
+    .then (function(res){
+      mapdata=res
+   console.log(mapdata)
+
+   var arraysize = mapdata.length
+   console.log("Arraysize",arraysize)
+
+ 
+
+// A loop that checks the frequency of each word and filters out the too-common ones
+
+var loopstart = 0
+while (loopstart < arraysize) {
+
+  var thisword = mapdata[loopstart].tags
+thisword = thisword.toString() 
+let fscore = thisword.split(":")
+if (fscore[1] < freq) {
+
+// unfiltered words get pushed to new array
+
+cornstarch.push(mapdata[loopstart])
+}
+
+loopstart++
+
+
+}
+
+// Now let's do a loop to make five random numbers. Reset the loopcounter.
+   
+loopstart = 0
+
+// Set the variables for the loop
+var cornarray = cornstarch.length
+// This is what happens when you start counting at 0
+cornarray = cornarray-1
+var makeset = 3
+if (makeset > cornarray){
+makeset = cornarray
+}
+
+
+// Making an array of random numbers and checking for duplicates
+
+while(loopstart < makeset){
+ var min = Math.ceil(0);
+  var max = Math.floor(cornarray);
+  var ranum = Math.floor(Math.random() * (max - min + 1) + min); 
+  console.log("Random Number is",ranum)
+if(corncount.indexOf(ranum)!==-1){
+  console.log("Already here")
+}
+else{ 
+corncount.push(ranum)
+loopstart++
+}}
+
+// Now let's loop through our random numbers and get our random words
+
+loopstart = 0
+wordloop = corncount.length
+
+while(loopstart < wordloop) {
+var ranum = corncount[loopstart]
+var raword = cornstarch[ranum]
+console.log("Random Word is",raword)
+randomcorn.push(raword)
+loopstart++
+}
+
+// The random words are actually in an array, so let's extract them, put quotes
+// around them, and make them nice. 
+
+loopstart = 0
+
+while (loopstart < wordloop) {
+var formword = randomcorn[loopstart].word
+formword = "\""+formword+"\""
+console.log(formword)
+formedcorn.push(formword)
+loopstart++
+}
+
+console.log(formedcorn)
+
+// Now let's turn this array of words into a Google search URL 
+
+var pushquery = "\""+searchq+"\""
+formedcorn.push(pushquery)
+var cornstring = formedcorn.toString();
+console.log(cornstring)
+cornstring = cornstring.replace(/,/g," ")
+console.log(cornstring)
+cornstring = encodeURI(cornstring)
+
+var search_url = "https://www.google.com/search?q="+cornstring
+console.log(search_url)
+window.open(search_url, '_blank')
+
+
+
+}
+
+
+    )}
+    
+
+
+
+
+
+       </script>
+
+  
+}
+   
+   </script>
+</body>
+</html>

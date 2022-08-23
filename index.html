@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>ResearchBuzz Search Gizmos: SearchSmush</title>
+		<title>ResearchBuzz Search Gizmos: Smushy Search</title>
 		<style type="text/css">
 			html, #page { padding:0; margin:0;}
 			body { margin:0; padding:0; width:100%; color:#959595; font:normal 12px/2.0em Sans-Serif;} 
@@ -80,7 +80,7 @@
 			</header>
 			<div class="feature">
 				<div class="feature-inner">
-				<h1>SearchSmush </h1>
+				<h1>Smushy Search </h1>
 				</div>
 			</div>
 		
@@ -96,10 +96,10 @@
 
 <h3>
   General topic searching on Google is a pain, especially if you don't know much about the topic you're trying to explore. When your knowledge is minimal it's 
-  hard to refine your query to get past the very general "front door" results that Google tends to provide for a topic search. Enter SearchSmush.</h3>
+  hard to refine your query to get past the very general "front door" results that Google tends to provide for a topic search. Enter Smushy Search.</h3>
   
-<h4> SearchSmush takes your topical search term and uses the Datamuse API to find related words (a frequency setting allows you to specify how common the words should be). 
-Three of the found words are then picked at random, added to your query term, smushed into a Google query, and opened in a new tab. The idea is to let you explore that topic 
+<h4> Smushy Search takes your topical search term and uses the Datamuse API to find related words (a frequency setting allows you to specify how common the words should be). 
+four of the found words are then picked at random, added to your query term in two "or" pairs, smushed into a Google query, and opened in a new tab. The idea is to let you explore that topic 
 with in-depth search results <b>without</b> needing any kind of prior knowledge, and <b>without</b> the time needed to build a specialized vocabulary. </h4>
  
   
@@ -112,8 +112,8 @@ with in-depth search results <b>without</b> needing any kind of prior knowledge,
 
 
 <label>What is the maximum frequency you want in your additional query words?</label><br>
-<i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find.</i>
-  <input type="number" class="freq" min="10" max="50" value="25"><br><br>
+<i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find. High-frequency words can lead to unfocused results. (This setting is a LOT of fun to play with.)</i>
+  <input type="number" class="freq" min="10" max="75" value="35"><br><br>
 
 <button onclick="smush()">Smush Up A Search Query</button><br><br>
 

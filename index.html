@@ -99,8 +99,9 @@
   hard to refine your query to get past the very general "front door" results that Google tends to provide for a topic search. Enter Smushy Search.</h3>
   
 <h4> Smushy Search takes your topical search term and uses the Datamuse API to find related words (a frequency setting allows you to specify how common the words should be). 
-four of the found words are then picked at random, added to your query term in two "or" pairs, smushed into a Google query, and opened in a new tab. The idea is to let you explore that topic 
+Four of the found words are then picked at random, added to your query term in two "or" pairs, smushed into a Google query, and opened in a new tab. The idea is to let you explore a topic 
 with in-depth search results <b>without</b> needing any kind of prior knowledge, and <b>without</b> the time needed to build a specialized vocabulary. </h4>
+ 
  
   
    <label>Query (one term, please):</label>
@@ -111,9 +112,24 @@ with in-depth search results <b>without</b> needing any kind of prior knowledge,
   <input type="text" class="extras" value="healthy, recipes, breakfast"><br><br>
 
 
+<label for="ecommerce">Do you want to filter out some common ecommerce URL and string patterns?</label><br>
+<i>This will remove Amazon and eBay, and attempt to remove common ecommerce results.</i><br>
+<select name="ecommerce" class="ecommerce">
+<option value="Y">Yes</option>
+<option value="N">No</option>
+</select><br><br>
+ 
+<label for="edugov">Do you want to restrict your search results to .edu and .gov domains?</label><br>
+<i>Does what it says on the tin. Might break your search, but worth a try.</i><br>
+<select name="edugov" class="edugov">
+<option value="N">No</option>
+<option value="Y">Yes</option>
+</select><br><br>
+
+
 <label>What is the maximum frequency you want in your additional query words?</label><br>
-<i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find. High-frequency words can lead to unfocused results. (This setting is a LOT of fun to play with.)</i>
-  <input type="number" class="freq" min="10" max="75" value="35"><br><br>
+<i>The lower the frequency, the less the word is commonly used. Low-frequency words generate the most-focused results but there are fewer of them to find.</i>
+  <input type="number" class="freq" min="10" max="50" value="25"><br><br>
 
 <button onclick="smush()">Smush Up A Search Query</button><br><br>
 
@@ -199,6 +215,9 @@ function smush(){
  var extrastring = extraA.toString(); 
 extrastring = extrastring.replace(/,/g," ")
 console.log(extrastring)
+ var ecommerce = document.querySelector(".ecommerce").value
+console.log(ecommerce)
+var edugov = document.querySelector(".edugov").value
 
     var thickno = 4
  
@@ -278,13 +297,14 @@ while(loopstart < 4){
 
 corncount.push(ranum)
 loopstart++
-
+console.log("cornarray",cornarray)
+console.log(typeof cornarray)
 }
 
 
-if (corncount.length < 2){
+if (cornarray < 2){
 
-window.alert("Datamuse couldn't find any words to add to your query term. Try another one. You can also try to set the word frequency higher (4 or 5). That will make more words available.")
+window.alert("Datamuse couldn't find any words to add to your query term. Try another one, making sure it's one word. You can also try to set the word frequency higher (it goes up to 75). That will make more words available.")
 }
 
 
@@ -327,6 +347,20 @@ var search_string = "("+formedcorn[0]+" | "+formedcorn[3]+")"+" "+"("+formedcorn
 search_string = encodeURI(search_string)
 
 var search_url = "https://www.google.com/search?q="+search_string
+
+var ecommerceText =" -inurl:amazon -inurl:ebay -inurl:pinterest -intitle:\"Shop for\" "
+ecommerceText = encodeURI(ecommerceText)
+if (ecommerce == "Y"){
+search_url = search_url+ecommerceText
+}
+
+
+var edugovText = " (site:edu | site:gov)" 
+edugovText == encodeURI(edugovText)
+if (edugov == "Y"){
+search_url = search_url+edugovText
+}
+
 console.log(search_url) 
 
 window.open(search_url, '_blank')
